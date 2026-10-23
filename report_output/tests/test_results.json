@@ -102,9 +102,9 @@
     "id": "TC-09",
     "module": "CampusFix",
     "action": "Endorse ticket CF-1003",
-    "expected": "Affected count increments (3 -> 4)",
+    "expected": "Affected count increments (4 -> 5)",
     "actual": "Actual: 4",
-    "status": "PASSED",
+    "status": "FAILED",
     "notes": ""
   },
   {
@@ -130,7 +130,7 @@
     "module": "Attendance",
     "action": "Student attendance & risk calculation",
     "expected": "Calculates aggregate attendance and identifies subjects below 75%",
-    "actual": "Overall: 77%, Risk count: 1",
+    "actual": "Overall: 78%, Risk count: 1",
     "status": "PASSED",
     "notes": ""
   },
@@ -148,7 +148,7 @@
     "module": "Attendance",
     "action": "Faculty save roster attendance",
     "expected": "Class lecture attendance saved, total lectures updated",
-    "actual": "New total: 25",
+    "actual": "New total: 26",
     "status": "PASSED",
     "notes": ""
   },
@@ -164,7 +164,7 @@
   {
     "id": "TC-17",
     "module": "Leave",
-    "action": "Faculty approve leave LV-5450",
+    "action": "Faculty approve leave LV-6055",
     "expected": "Status becomes APPROVED with mentor remarks",
     "actual": "APPROVED",
     "status": "PASSED",
@@ -184,7 +184,7 @@
     "module": "Services",
     "action": "Create student service request",
     "expected": "New service request recorded",
-    "actual": "Count: 1 -> 2",
+    "actual": "Count: 4 -> 5",
     "status": "PASSED",
     "notes": ""
   },
@@ -201,8 +201,8 @@
     "id": "TC-21",
     "module": "Inventory",
     "action": "Increment whiteboard markers stock by +5",
-    "expected": "Stock increases (4 -> 9)",
-    "actual": "Actual: 9",
+    "expected": "Stock increases (9 -> 14)",
+    "actual": "Actual: 14",
     "status": "PASSED",
     "notes": ""
   },

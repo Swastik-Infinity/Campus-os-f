@@ -31,6 +31,8 @@ with sync_playwright() as p:
     context = browser.new_context(viewport={"width": 1366, "height": 850})
     page = context.new_page()
     page.goto("http://localhost:8080/campusos-v1.2.html")
+    page.evaluate("localStorage.clear()")
+    page.reload()
     page.wait_for_timeout(1000)
     
     # Screenshot 1: Login Screen
