@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            margin: 20px;
+            background: #FFFFFF;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #container {
+            padding: 24px;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <pre class="mermaid" id="diagram-target"></pre>
+    </div>
+    <script>
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: 'default',
+            themeVariables: {
+                fontFamily: 'Inter, system-ui, sans-serif',
+                fontSize: '13px',
+                primaryColor: '#EBF3F0',
+                primaryBorderColor: '#2B5E56',
+                primaryTextColor: '#111D33',
+                lineColor: '#2B5E56',
+                secondaryColor: '#FFF8EB',
+                tertiaryColor: '#F4F5F0'
+            }
+        });
+        async function renderDiagram(code) {
+            const target = document.getElementById('diagram-target');
+            target.removeAttribute('data-processed');
+            target.innerHTML = code;
+            await mermaid.run({ nodes: [target] });
+        }
+    </script>
+</body>
+</html>

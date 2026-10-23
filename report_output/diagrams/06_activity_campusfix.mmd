@@ -1,0 +1,30 @@
+graph TD
+    Start([User Clicks '+ Report an Issue']) --> OpenModal[Open CampusFix Modal Dialog]
+    OpenModal --> UserInputs[User types Title, Description, Location]
+    UserInputs --> TriggerEval[Trigger evaluateAiSuggestions on input]
+    
+    TriggerEval --> RegexMatch{Match Category / Urgency Keywords?}
+    RegexMatch -- Yes --> SetProposed[Set aiProposed Category & Urgency]
+    RegexMatch -- No --> CheckDup
+
+    SetProposed --> CheckDup{Check Active Ticket at Same Location?}
+    CheckDup -- Duplicate Found --> ShowBanner[Display AI Suggestion Box & Duplicate Warning Banner]
+    CheckDup -- No Duplicate --> ShowBox[Display AI Suggestion Box Only]
+
+    ShowBanner --> UserDecision{User Clicks 'Apply Suggestions'?}
+    ShowBox --> UserDecision
+
+    UserDecision -- Yes --> AutoFill[Auto-populate Category dropdown & Urgency selector]
+    UserDecision -- No --> ManualFill[User selects values manually]
+
+    AutoFill --> ClickSubmit[User clicks 'Submit Ticket']
+    ManualFill --> ClickSubmit
+
+    ClickSubmit --> Validate{Required Fields Valid?}
+    Validate -- Missing Title/Loc --> ShowError[Highlight input borders with has-error class] --> UserInputs
+    Validate -- Valid --> CreateRecord[AppUtils.generateId: CF-XXXX<br/>Set status: PENDING, SLA target: 24/72/120h]
+
+    CreateRecord --> SaveStore[ticketRepository.create: Save to localStorage]
+    SaveStore --> TriggerToast[appUI.showToast: 'Ticket Submitted']
+    TriggerToast --> CloseModal[appUI.closeModal & Re-render CampusFix View]
+    CloseModal --> End([End])

@@ -1,0 +1,34 @@
+sequenceDiagram
+    autonumber
+    actor User as Campus User
+    participant View as CampusFix View
+    participant Module as appCampusFixModule
+    participant Repo as ticketRepository
+    participant Storage as Window.localStorage
+    participant UI as appUI
+
+    User->>View: Click "+ Report an Issue"
+    View->>Module: openCreateModal()
+    Module->>UI: showModal("Report Campus Facility Issue")
+    UI-->>User: Render Interactive Form
+
+    User->>Module: Type "Wi-Fi down in Hostel Block C"
+    Module->>Module: evaluateAiSuggestions()
+    Note over Module: Match regex keywords & scan open tickets
+    Module-->>User: Render Category ('IT / Wifi') & Dup Warning
+
+    User->>Module: Click "Apply Suggestions" & "Submit Ticket"
+    Module->>Module: submitTicketForm()
+    
+    alt Validation Failure
+        Module-->>User: Show has-error highlight
+    else Validation Success
+        Module->>Repo: create(newTicketObject)
+        Repo->>Storage: setItem('campusos.v1.2.tickets', JSON.stringify(list))
+        Storage-->>Repo: Acknowledge Persistence
+        Repo-->>Module: Return Persisted Ticket
+        Module->>UI: showToast("Ticket Submitted Successfully")
+        Module->>UI: closeModal()
+        Module->>View: appModuleRenderer.render('campusfix')
+        View-->>User: Display New Ticket Docket with SLA Clock
+    end

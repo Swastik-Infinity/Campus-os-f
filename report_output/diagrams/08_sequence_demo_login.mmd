@@ -1,0 +1,26 @@
+sequenceDiagram
+    autonumber
+    actor User as Campus User
+    participant AuthScreen as #auth-screen (Persona Selector)
+    participant Auth as appAuth
+    participant Storage as Window.localStorage
+    participant Loader as appStateLoader
+    participant Router as appNav
+    participant AppRoot as #app-root
+
+    User->>AuthScreen: Click Role Card (e.g. 'student-kiran')
+    AuthScreen->>Auth: login('student-kiran')
+    Auth->>Storage: setItem('campusos.v1.2.session', 'student-kiran')
+    
+    Auth->>AuthScreen: Set display: none
+    Auth->>AppRoot: Set display: flex
+    
+    Auth->>Loader: loadAll()
+    Note over Loader: Read tickets, attendance, leaves, notices from localStorage
+    
+    Auth->>Router: renderNavigation()
+    Note over Router: Filter MODULE_CONFIG via ROLE_PERMISSIONS['student']
+    
+    Auth->>Router: switchModule('dashboard')
+    Router-->>AppRoot: Render Dashboard View
+    Auth-->>User: Toast: "Welcome back, Kiran"

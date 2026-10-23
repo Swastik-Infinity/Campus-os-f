@@ -1,0 +1,79 @@
+erDiagram
+    DEMO_USER ||--o{ TICKET : "reports (ownerId)"
+    DEMO_USER ||--o{ TICKET : "assigned_to (staffId)"
+    DEMO_USER ||--o{ LEAVE_REQUEST : "applies (studentId)"
+    DEMO_USER ||--o{ SERVICE_REQUEST : "orders (studentId)"
+    DEMO_USER ||--o{ NOTICE : "reads (readBy)"
+
+    TICKET {
+        string id PK "e.g. CF-1001"
+        string ownerId FK
+        string assignedTo FK
+        string title
+        string category
+        string location
+        string urgency
+        string status "PENDING | IN_PROGRESS | RESOLVED"
+        int affectedCount
+        int expectedHours
+        datetime created
+        datetime resolved
+    }
+
+    ATTENDANCE {
+        int threshold "Default: 75%"
+        json subjects "List of attended/total counts"
+        json history "Chronological lecture log"
+    }
+
+    LEAVE_REQUEST {
+        string id PK "e.g. LV-1001"
+        string studentId FK
+        date start
+        date end
+        int days
+        string reason
+        string document "Attachment filename string"
+        string status "PENDING | APPROVED | REJECTED | CLARIFICATION"
+        string notes
+    }
+
+    NOTICE {
+        string id PK "e.g. NT-1001"
+        string title
+        string content
+        string audience "ALL | CE-Student | Faculty"
+        string priority "Normal | Important"
+        date expiry
+        date created
+        array readBy "List of user IDs"
+    }
+
+    SERVICE_REQUEST {
+        string id PK "e.g. SR-1001"
+        string studentId FK
+        string type "Bonafide | ID Card | Transcript"
+        string details
+        string status "PENDING | IN_PROGRESS | COMPLETED"
+        date date
+    }
+
+    ASSET {
+        string id PK "e.g. PR-204"
+        string name
+        string category
+        string location
+        string condition
+        int repairs
+        int complaints
+        string specs
+    }
+
+    INVENTORY {
+        string id PK "e.g. INV-101"
+        string name
+        string department
+        int stock
+        int min
+        string unit
+    }

@@ -1,0 +1,50 @@
+graph TD
+    subgraph ClientBrowser ["Client Web Browser (Zero-Server Architecture)"]
+        subgraph PresentationLayer ["Presentation & UI Layer"]
+            HTML5["Semantic HTML5 Structure (Single Document)"]
+            CSS3["Modern CSS3 Design System ('Warm Industrial Editorial')<br/>CSS Variables · Oswald · Inter · JetBrains Mono"]
+            UIManager["appUI: Modals · Slide-out Drawers · Toast Queue"]
+        end
+
+        subgraph LogicLayer ["Application Logic Layer (Vanilla JS ES6+)"]
+            Router["appNav: Client-side Navigation & Module Router"]
+            Auth["appAuth: Demo Persona Management & Session State"]
+            State["AppState: Central Reactive Reactive Application State"]
+            RBAC["ROLE_PERMISSIONS: Multi-Role Access Control Matrix"]
+            
+            subgraph FeatureModules ["Domain Feature Modules"]
+                M1["appDashboardModule"]
+                M2["appCampusFixModule<br/>(Keyword Regex AI & SLA Engine)"]
+                M3["appAttendanceModule<br/>(75% Rule & Roster Marker)"]
+                M4["appLeaveModule<br/>(Multi-Stage Approval Flow)"]
+                M5["appNoticesModule"]
+                M6["appServicesModule"]
+                M7["appAssetsModule"]
+                M8["appInventoryModule"]
+            end
+            
+            subgraph Repositories ["Abstracted Repository Layer"]
+                R1["ticketRepository"]
+                R2["attendanceRepository"]
+                R3["leaveRepository"]
+                R4["noticeRepository"]
+                R5["serviceRepository"]
+                R6["assetRepository"]
+                R7["inventoryRepository"]
+                R8["notificationRepository"]
+            end
+        end
+
+        subgraph PersistenceLayer ["Client Storage Persistence"]
+            LS[("Browser Window.localStorage<br/>JSON Serialization")]
+        end
+    end
+
+    HTML5 --> LogicLayer
+    CSS3 --> HTML5
+    UIManager --> LogicLayer
+    Router --> FeatureModules
+    Auth --> State
+    RBAC --> Router
+    FeatureModules --> Repositories
+    Repositories --> LS

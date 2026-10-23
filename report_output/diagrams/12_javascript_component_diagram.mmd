@@ -1,0 +1,50 @@
+graph TD
+    subgraph SingleFileApp ["campusos-v1.2.html (Single-File Architecture)"]
+        subgraph CoreState ["State & Security Core"]
+            AppState["AppState (Global Reactive Store)"]
+            RoleMatrix["ROLE_PERMISSIONS (RBAC Matrix)"]
+            ModuleRegistry["MODULE_CONFIG (Module Metadata)"]
+        end
+
+        subgraph UIEngine ["UI & Presentation Controllers"]
+            appUI["appUI: Toasts · Modals · Drawers"]
+            appAuth["appAuth: Persona Session Switcher"]
+            appNav["appNav: Module Router & Nav Generator"]
+            appReset["appReset: Initial State Restorer"]
+            appModuleRenderer["appModuleRenderer: View Orchestrator"]
+        end
+
+        subgraph Modules ["Feature Render Modules"]
+            MOD_Dash["appDashboardModule"]
+            MOD_Fix["appCampusFixModule"]
+            MOD_Att["appAttendanceModule"]
+            MOD_Leave["appLeaveModule"]
+            MOD_Notice["appNoticesModule"]
+            MOD_Service["appServicesModule"]
+            MOD_Asset["appAssetsModule"]
+            MOD_Inv["appInventoryModule"]
+        end
+
+        subgraph Repos ["Data Access Repositories"]
+            R_Ticket["ticketRepository"]
+            R_Att["attendanceRepository"]
+            R_Leave["leaveRepository"]
+            R_Notice["noticeRepository"]
+            R_Service["serviceRepository"]
+            R_Asset["assetRepository"]
+            R_Inv["inventoryRepository"]
+            R_Notif["notificationRepository"]
+        end
+
+        subgraph StorageBridge ["Web Storage Interface"]
+            LS[("Browser Window.localStorage")]
+        end
+    end
+
+    appAuth --> AppState
+    appNav --> RoleMatrix
+    appNav --> appModuleRenderer
+    appModuleRenderer --> Modules
+    Modules --> Repos
+    Repos --> LS
+    Modules --> appUI

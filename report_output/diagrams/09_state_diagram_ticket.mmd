@@ -1,0 +1,19 @@
+stateDiagram-v2
+    [*] --> PENDING: User reports issue (CF-XXXX generated)
+    
+    PENDING --> IN_PROGRESS: Staff / Admin acknowledges & begins repair
+    PENDING --> RESOLVED: Quick fix resolved directly
+    
+    IN_PROGRESS --> RESOLVED: Maintenance completed (timestamp recorded)
+    
+    state PENDING {
+        [*] --> UnderTargetSLA
+        UnderTargetSLA --> OverdueBreached: Elapsed Hours > Target SLA (24/72/120h)
+    }
+
+    state IN_PROGRESS {
+        [*] --> InRepairs
+        InRepairs --> OverdueBreached: Work ongoing past SLA deadline
+    }
+
+    RESOLVED --> [*]: Closed within recorded SLA

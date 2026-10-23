@@ -1,0 +1,47 @@
+graph TD
+    User["Campus User"]
+    AdminUser["Admin / Manager"]
+
+    subgraph Processes ["Level 1 Functional Processes"]
+        P1["(1.0) Auth & Session Handling"]
+        P2["(2.0) CampusFix Ticketing & SLA Engine"]
+        P3["(3.0) Attendance & Roster Calculation"]
+        P4["(4.0) Leave Approval Pipeline"]
+        P5["(5.0) Smart Notice Distribution"]
+        P6["(6.0) Service Center Request Processing"]
+        P7["(7.0) Asset & Inventory Tracking"]
+    end
+
+    subgraph DataStores ["localStorage Data Stores"]
+        DS_Auth[("Session Key")]
+        DS_Tickets[("Tickets Collection")]
+        DS_Att[("Attendance Records")]
+        DS_Leave[("Leave Requests")]
+        DS_Notice[("Notices Collection")]
+        DS_Service[("Service Requests")]
+        DS_Assets[("Assets & Inventory")]
+    end
+
+    User -->|Select Persona| P1
+    P1 -->|Store Token| DS_Auth
+
+    User -->|Submit Ticket Form| P2
+    P2 -->|Save Docket| DS_Tickets
+    P2 -->|SLA Breach Check| User
+
+    User -->|Mark / Query Attendance| P3
+    P3 -->|Evaluate 75% Rule| DS_Att
+
+    User -->|Apply Leave| P4
+    AdminUser -->|Approve / Clarify| P4
+    P4 -->|Update Status| DS_Leave
+
+    AdminUser -->|Publish Notice| P5
+    User -->|Mark Read| P5
+    P5 -->|Update ReadBy| DS_Notice
+
+    User -->|Order Certificate| P6
+    P6 -->|Save Request| DS_Service
+
+    AdminUser -->|Log Repair / Stock| P7
+    P7 -->|Stock Adjustment| DS_Assets

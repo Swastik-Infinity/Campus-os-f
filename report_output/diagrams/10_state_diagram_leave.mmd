@@ -1,0 +1,11 @@
+stateDiagram-v2
+    [*] --> PENDING: Student submits leave application (LV-XXXX)
+    
+    PENDING --> APPROVED: Faculty grants approval
+    PENDING --> REJECTED: Faculty rejects with reason
+    PENDING --> CLARIFICATION: Faculty requests additional evidence / parent note
+    
+    CLARIFICATION --> PENDING: Student provides updated notes / documents
+    
+    APPROVED --> [*]: Final approval recorded
+    REJECTED --> [*]: Case closed

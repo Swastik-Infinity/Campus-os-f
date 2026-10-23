@@ -1,0 +1,71 @@
+graph TD
+    Student(("Student"))
+    Faculty(("Faculty"))
+    Staff(("Staff"))
+    Admin(("Admin"))
+
+    subgraph UseCases ["CampusOS System Capabilities"]
+        UC1(["Select Demo Persona & Login"])
+        UC2(["View Role Dashboard & KPIs"])
+        UC3(["Report CampusFix Issue (AI Assisted)"])
+        UC4(["Endorse Issue ('I'm Affected Too')"])
+        UC5(["Track Ticket SLA & Timeline"])
+        UC6(["Update Ticket Status & Assign Staff"])
+        UC7(["View Attendance & Forecast Deficit"])
+        UC8(["Mark Faculty Roster Attendance"])
+        UC9(["Configure Attendance Threshold (%)"])
+        UC10(["Apply for Student Leave"])
+        UC11(["Approve / Reject / Clarify Leave"])
+        UC12(["Broadcast Official Smart Notice"])
+        UC13(["Mark Notice Read"])
+        UC14(["Request Official Certificate / NOC"])
+        UC15(["Inspect Assets & Maintenance History"])
+        UC16(["Adjust Inventory Stock & Reorder"])
+        UC17(["Reset Demo Data"])
+    end
+
+    Student --> UC1
+    Student --> UC2
+    Student --> UC3
+    Student --> UC4
+    Student --> UC5
+    Student --> UC7
+    Student --> UC10
+    Student --> UC13
+    Student --> UC14
+
+    Faculty --> UC1
+    Faculty --> UC2
+    Faculty --> UC3
+    Faculty --> UC5
+    Faculty --> UC8
+    Faculty --> UC9
+    Faculty --> UC11
+    Faculty --> UC12
+    Faculty --> UC13
+
+    Staff --> UC1
+    Staff --> UC2
+    Staff --> UC3
+    Staff --> UC5
+    Staff --> UC6
+    Staff --> UC15
+    Staff --> UC16
+
+    Admin --> UC1
+    Admin --> UC2
+    Admin --> UC3
+    Admin --> UC4
+    Admin --> UC5
+    Admin --> UC6
+    Admin --> UC7
+    Admin --> UC8
+    Admin --> UC9
+    Admin --> UC10
+    Admin --> UC11
+    Admin --> UC12
+    Admin --> UC13
+    Admin --> UC14
+    Admin --> UC15
+    Admin --> UC16
+    Admin --> UC17

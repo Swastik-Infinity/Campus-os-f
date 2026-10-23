@@ -1,0 +1,245 @@
+[
+  {
+    "id": "TC-01A",
+    "module": "Auth",
+    "action": "Login as Student (Kiran Patil)",
+    "expected": "Current user is Kiran Patil (student)",
+    "actual": "Kiran Patil (student)",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-02",
+    "module": "Session",
+    "action": "Session reload check",
+    "expected": "Session restored from localStorage ('student-kiran')",
+    "actual": "State: student-kiran, Stored: student-kiran",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-03A",
+    "module": "RBAC",
+    "action": "Student nav visibility",
+    "expected": "6 modules allowed, no Assets/Inventory",
+    "actual": "['Dashboard', 'CampusFix', 'Smart Attendance', 'Leave Management', 'Smart Notices', 'Service Centre']",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-04",
+    "module": "Security/RBAC",
+    "action": "Student direct switch to Assets",
+    "expected": "Access restricted toast shown, activeModule remains dashboard",
+    "actual": "Active: dashboard",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-01B",
+    "module": "Auth",
+    "action": "Login as Faculty (Dr. Neha Kulkarni)",
+    "expected": "Current user role is faculty",
+    "actual": "faculty",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-01C",
+    "module": "Auth",
+    "action": "Login as Staff (Arun More)",
+    "expected": "Current user role is staff",
+    "actual": "staff",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-01D",
+    "module": "Auth",
+    "action": "Login as Administrator",
+    "expected": "Current user role is admin",
+    "actual": "admin",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-05",
+    "module": "CampusFix",
+    "action": "Submit empty ticket form",
+    "expected": "Field error classes added on title and location",
+    "actual": "Title err: True, Loc err: True",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-06",
+    "module": "CampusFix",
+    "action": "Rule-based keyword suggestion",
+    "expected": "Suggests category 'IT / Wifi' or 'Electrical' and High urgency",
+    "actual": "Box active: True, Cat: IT / Wifi, Urg: High",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-07",
+    "module": "CampusFix",
+    "action": "Duplicate location detection",
+    "expected": "Flags open ticket CF-1002 at Hostel Block C, 3rd floor",
+    "actual": "Warning present: True",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-08",
+    "module": "CampusFix",
+    "action": "SLA display on ticket cards",
+    "expected": "Calculates elapsed vs expected SLA hours and displays badge",
+    "actual": "SLA rendered: True",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-09",
+    "module": "CampusFix",
+    "action": "Endorse ticket CF-1003",
+    "expected": "Affected count increments (3 -> 4)",
+    "actual": "Actual: 4",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-10",
+    "module": "CampusFix",
+    "action": "Admin update ticket status",
+    "expected": "Status updated to IN_PROGRESS",
+    "actual": "IN_PROGRESS",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-11",
+    "module": "CampusFix",
+    "action": "Filter tickets by search 'faucet'",
+    "expected": "Returns only faucet ticket",
+    "actual": "Count rendered: 1",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-12",
+    "module": "Attendance",
+    "action": "Student attendance & risk calculation",
+    "expected": "Calculates aggregate attendance and identifies subjects below 75%",
+    "actual": "Overall: 77%, Risk count: 1",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-14",
+    "module": "Attendance",
+    "action": "Configure attendance threshold to 80%",
+    "expected": "Threshold updated in AppState and localStorage to 80%",
+    "actual": "Threshold: 80%",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-15",
+    "module": "Attendance",
+    "action": "Faculty save roster attendance",
+    "expected": "Class lecture attendance saved, total lectures updated",
+    "actual": "New total: 25",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-16",
+    "module": "Leave",
+    "action": "Student submit leave application",
+    "expected": "New leave application placed at top with PENDING status",
+    "actual": "Selected for national level symposium paper presentation",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-17",
+    "module": "Leave",
+    "action": "Faculty approve leave LV-5450",
+    "expected": "Status becomes APPROVED with mentor remarks",
+    "actual": "APPROVED",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-18",
+    "module": "Notices",
+    "action": "Toggle notice read status",
+    "expected": "User ID added to notice.readBy array",
+    "actual": "Read by: ['faculty-neha']",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-19",
+    "module": "Services",
+    "action": "Create student service request",
+    "expected": "New service request recorded",
+    "actual": "Count: 1 -> 2",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-20",
+    "module": "Assets",
+    "action": "View asset register",
+    "expected": "Displays equipment with condition & repair history",
+    "actual": "Asset count: 4",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-21",
+    "module": "Inventory",
+    "action": "Increment whiteboard markers stock by +5",
+    "expected": "Stock increases (4 -> 9)",
+    "actual": "Actual: 9",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-22",
+    "module": "Notifications",
+    "action": "Toggle notification dropdown",
+    "expected": "Dropdown menu displays unread notifications",
+    "actual": "Dropdown show: True",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-24",
+    "module": "Security",
+    "action": "HTML escaping function",
+    "expected": "Escapes HTML tags to prevent XSS injection",
+    "actual": "&lt;script&gt;alert(1)&lt;/script&gt;&lt;b&gt;bold&lt;/b&gt;",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-23A",
+    "module": "System",
+    "action": "Open Reset Demo Data modal",
+    "expected": "Displays irreversible reset warning confirmation dialog",
+    "actual": "Dialog open",
+    "status": "PASSED",
+    "notes": ""
+  },
+  {
+    "id": "TC-25",
+    "module": "Responsive",
+    "action": "Mobile viewport layout (375px)",
+    "expected": "Mobile hamburger button visible, layout stacks cleanly",
+    "actual": "Hamburger visible: True",
+    "status": "PASSED",
+    "notes": ""
+  }
+]

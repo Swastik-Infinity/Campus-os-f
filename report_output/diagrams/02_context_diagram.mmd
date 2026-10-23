@@ -1,0 +1,19 @@
+graph TD
+    Student(("🎓 Student<br/>(Kiran Patil)"))
+    Faculty(("👩‍🏫 Faculty<br/>(Dr. Neha Kulkarni)"))
+    Staff(("🛠️ Facilities Staff<br/>(Arun More)"))
+    Admin(("🏛️ Campus Administrator<br/>(Campus Admin)"))
+
+    CampusOS[["CampusOS v1.2<br/>Smart Campus Operating System<br/>(Unified Client-Side System)"]]
+
+    Student -- "Submit facility tickets, Apply leaves,<br/>Track attendance, Request certificates" --> CampusOS
+    CampusOS -- "SLA updates, At-risk warnings,<br/>Notices, Certificate status" --> Student
+
+    Faculty -- "Mark class roster attendance,<br/>Review/approve student leaves" --> CampusOS
+    CampusOS -- "Class rosters, Student leave requests,<br/>Faculty circulars" --> Faculty
+
+    Staff -- "Update ticket status, Manage assets,<br/>Adjust consumable stock" --> CampusOS
+    CampusOS -- "Assigned workorders, Maintenance logs,<br/>Low-inventory alerts" --> Staff
+
+    Admin -- "Full system oversight, Configure threshold,<br/>Assign tickets, Reset demo data" --> CampusOS
+    CampusOS -- "Cross-campus KPI analytics, SLA breaches,<br/>Complete operational logs" --> Admin

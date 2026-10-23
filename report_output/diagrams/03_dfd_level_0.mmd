@@ -1,0 +1,28 @@
+graph TD
+    subgraph Actors ["External Campus Actors"]
+        Student["Student Actor"]
+        Faculty["Faculty Actor"]
+        Staff["Maintenance Staff Actor"]
+        Admin["Administrator Actor"]
+    end
+
+    subgraph Process0 ["Level 0 Core Operations Engine"]
+        P0["(0.0) CampusOS Unified Campus<br/>Operations Processing Engine"]
+    end
+
+    subgraph Storage ["Local Web Storage"]
+        D1[("Browser localStorage<br/>Collections")]
+    end
+
+    Student -- "Tickets, Leave Applications, Service Orders" --> P0
+    Faculty -- "Roster Marks, Leave Decisions, Notices" --> P0
+    Staff -- "Resolution Updates, Stock Adjustments" --> P0
+    Admin -- "Policy Thresholds, Staff Assignments" --> P0
+
+    P0 -- "Persist JSON entities" --> D1
+    D1 -- "Load stored state" --> P0
+
+    P0 -- "Attendance Risks, SLA Alerts, Badges" --> Student
+    P0 -- "Roster Summaries, Pending Applications" --> Faculty
+    P0 -- "Assigned Workorders, Low Stock Warnings" --> Staff
+    P0 -- "Institutional KPI Metrics, SLA Logs" --> Admin

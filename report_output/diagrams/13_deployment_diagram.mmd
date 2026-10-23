@@ -1,0 +1,23 @@
+graph TD
+    subgraph ClientDevice ["Client Computing Node (Desktop / Laptop / Tablet / Smartphone)"]
+        subgraph WebBrowser ["Modern Web Browser (Chrome, Edge, Firefox, Safari)"]
+            subgraph DOMRuntime ["Browser Runtime Engine"]
+                DOM["DOM & CSSOM Tree Render"]
+                V8["V8 / SpiderMonkey JavaScript Virtual Machine"]
+                StorageEngine["Local Web Storage (localStorage Engine)"]
+            end
+            
+            subgraph StaticAssets ["Static Local Web Artifact"]
+                SingleHTML["campusos-v1.2.html<br/>(4,693 Lines · HTML5 + CSS3 + JS ES6+)"]
+            end
+        end
+    end
+
+    subgraph FontCDN ["External Font Delivery Network (Optional CDN Link)"]
+        GoogleFonts["fonts.googleapis.com<br/>(Oswald, Inter, JetBrains Mono)"]
+    end
+
+    SingleHTML --> DOM
+    SingleHTML --> V8
+    V8 <--> StorageEngine
+    SingleHTML -.->|Fetch webfonts if online| GoogleFonts
